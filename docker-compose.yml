@@ -7,8 +7,6 @@ services:
       target: app
     environment:
       - PORT
-    env_file:
-      - .env
     init: true
     ports:
       - "${PORT}:${PORT}"

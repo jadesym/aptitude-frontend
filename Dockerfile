@@ -65,6 +65,11 @@ COPY --chown=$USER_NAME:$USER_NAME \
 #----------------------------------------------------------------------
 FROM base as builder
 
+# Currently commenting out the copying of the .env file since we don't have custom configs yet.
+COPY \
+  .env* \
+  $APP_DIR
+
 RUN npm run build
 
 #----------------------------------------------------------------------
@@ -115,11 +120,6 @@ CMD ["npm", "run", "test:unit"]
 # Use multi-stage builds to have the test image
 #----------------------------------------------------------------------
 FROM base as app
-
-## Currently commenting out the copying of the .env file since we don't have custom configs yet.
-# COPY \
-#   .env \
-#   $APP_DIR
 
 COPY \
   --from=builder \
