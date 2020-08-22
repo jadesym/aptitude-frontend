@@ -1,8 +1,25 @@
 import React, { Component } from "react";
+import { gql } from "@apollo/client";
 import logo from "./logo.svg";
 import "./App.scss";
+import { query } from "./api/graphQLClient";
 
-import { getServerStatus } from "./api/fetch";
+// Move query into a separate file
+const serverStatusQuery = gql`
+  query getServerStatus {
+    serverStatus {
+      isServerAvailable
+    }
+  }
+`;
+
+interface ServerStatus {
+  isServerAvailable: boolean;
+}
+
+interface QueryResponse {
+  serverStatus: ServerStatus;
+}
 
 class App extends Component<{}, { isServerAvailable?: boolean }> {
   constructor(props: {}) {
@@ -11,8 +28,23 @@ class App extends Component<{}, { isServerAvailable?: boolean }> {
   }
 
   async componentDidMount() {
-    const isServerAvailable = await getServerStatus();
-    this.setState({ isServerAvailable });
+    let queryResult;
+    try {
+      queryResult = await query<QueryResponse>(serverStatusQuery);
+    } catch (err) {
+      this.setState({
+        isServerAvailable: false,
+      });
+      return;
+    }
+
+    const { loading, data } = queryResult;
+
+    if (!loading) {
+      this.setState({
+        isServerAvailable: data!.serverStatus.isServerAvailable,
+      });
+    }
   }
 
   render() {

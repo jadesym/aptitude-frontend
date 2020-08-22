@@ -114,6 +114,12 @@ COPY \
   --from=builder \
   $APP_DIR/src $APP_DIR/src
 
+# Copying only the test and base environment files.
+COPY \
+  .env $APP_DIR
+COPY \
+  .env.test* $APP_DIR
+
 CMD ["npm", "run", "test:unit"]
 
 #----------------------------------------------------------------------

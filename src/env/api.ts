@@ -7,7 +7,7 @@ export function getAPIBaseUrl(): string {
 
   if (isNaN(portNumber) || !Number.isInteger(portNumber)) {
     throw new Error(
-      `Port string ${port} must be a valid integer. Check the port configuration.`
+      `Port string ${port} must be a valid integer. Check the port configuration. Current env is ${process.env.NODE_ENV}.`
     );
   }
 
