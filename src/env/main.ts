@@ -13,3 +13,10 @@ export function getAPIBaseUrl(): string {
 
   return `${uriScheme}://${hostName}:${portNumber.toString()}`;
 }
+
+export function getEnv(): string {
+  if (process.env.NODE_ENV === undefined) {
+    throw new Error("NODE_ENV environment variable must be non-empty.");
+  }
+  return process.env.NODE_ENV;
+}

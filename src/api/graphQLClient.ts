@@ -8,7 +8,7 @@ import { onError } from "@apollo/client/link/error";
 import { BatchHttpLink } from "@apollo/client/link/batch-http";
 import { from } from "@apollo/client";
 
-import { getAPIBaseUrl } from "../env/api";
+import { getAPIBaseUrl } from "../env/main";
 
 const errorLink = onError(
   ({ graphQLErrors, networkError, operation, forward }) => {

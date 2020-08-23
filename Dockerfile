@@ -65,7 +65,6 @@ COPY --chown=$USER_NAME:$USER_NAME \
 #----------------------------------------------------------------------
 FROM base as builder
 
-# Currently commenting out the copying of the .env file since we don't have custom configs yet.
 COPY \
   .env* \
   $APP_DIR
