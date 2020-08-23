@@ -114,22 +114,15 @@ COPY \
   $APP_DIR/src $APP_DIR/src
 
 # Attempting a temporary hack to see if this fixes the COPY failure issue
+# Remove this hack once the below issue with multi-stage build Docker is resolved:
+# https://github.com/moby/moby/issues/37965
 RUN true
 
 # Copying only the test and base environment files.
 COPY \
-  # --from=builder \
   .env $APP_DIR
-
-# Attempting a temporary hack to see if this fixes the COPY failure issue
-# RUN true
-
 COPY \
-  # --from=builder \
   .env.test* $APP_DIR
-
-# Temporarily logging out to see if .env files are being copied properly
-RUN ls -alsh $APP_DIR
 
 CMD ["npm", "run", "test:unit"]
 
