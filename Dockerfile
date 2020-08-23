@@ -113,14 +113,19 @@ COPY \
   --from=builder \
   $APP_DIR/src $APP_DIR/src
 
-# Copying only the test and base environment files.
-COPY \
-  .env $APP_DIR
-
 # Attempting a temporary hack to see if this fixes the COPY failure issue
 RUN true
 
+# Copying only the test and base environment files.
 COPY \
+  # --from=builder \
+  .env $APP_DIR
+
+# Attempting a temporary hack to see if this fixes the COPY failure issue
+# RUN true
+
+COPY \
+  # --from=builder \
   .env.test* $APP_DIR
 
 # Temporarily logging out to see if .env files are being copied properly
