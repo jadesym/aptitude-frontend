@@ -16,6 +16,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+      - name: Get current docker(-compose) versions
+        run: docker --version && docker-compose --version
       - name: Run build of the image
         run: make build
       - name: Run build of the unit tests target
