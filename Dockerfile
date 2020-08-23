@@ -116,8 +116,15 @@ COPY \
 # Copying only the test and base environment files.
 COPY \
   .env $APP_DIR
+
+# Attempting a temporary hack to see if this fixes the COPY failure issue
+RUN true
+
 COPY \
   .env.test* $APP_DIR
+
+# Temporarily logging out to see if .env files are being copied properly
+RUN ls -alsh $APP_DIR
 
 CMD ["npm", "run", "test:unit"]
 
