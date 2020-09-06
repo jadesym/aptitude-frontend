@@ -8,19 +8,24 @@ const serverStatusQuery = gql`
   query getServerStatus {
     serverStatus {
       isServerAvailable
+      mongoDBConnectionStatus
     }
   }
 `;
 
 interface ServerStatus {
   isServerAvailable: boolean;
+  mongoDBConnectionStatus: string;
 }
 
 interface QueryResponse {
   serverStatus: ServerStatus;
 }
 
-class ServerStatus extends Component<{}, { isServerAvailable?: boolean }> {
+class ServerStatus extends Component<
+  {},
+  { isServerAvailable?: boolean; mongoDBConnectionStatus?: string }
+> {
   constructor(props: {}) {
     super(props);
     this.state = {};
@@ -42,12 +47,14 @@ class ServerStatus extends Component<{}, { isServerAvailable?: boolean }> {
     if (!loading) {
       this.setState({
         isServerAvailable: data!.serverStatus.isServerAvailable,
+        mongoDBConnectionStatus: data!.serverStatus.mongoDBConnectionStatus,
       });
     }
   }
 
   public render() {
     const isServerAvailable = this.state.isServerAvailable;
+    const mongoDBConnectionStatus = this.state.mongoDBConnectionStatus;
 
     let serverStatusString;
 
@@ -60,11 +67,18 @@ class ServerStatus extends Component<{}, { isServerAvailable?: boolean }> {
       serverStatusString = "AVAILABLE";
     }
 
+    const mongoDBConnectionStatusString =
+      isServerAvailable === undefined || isServerAvailable === null
+        ? "TO_BE_DETERMINED"
+        : mongoDBConnectionStatus;
+
     return (
       <div>
         Environment: {getEnv()}
         <br />
         API Server Status: {serverStatusString}
+        <br />
+        MongoDB Connection Status: {mongoDBConnectionStatusString}
       </div>
     );
   }
