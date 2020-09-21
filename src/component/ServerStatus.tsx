@@ -79,6 +79,8 @@ class ServerStatus extends Component<
         API Server Status: {serverStatusString}
         <br />
         MongoDB Connection Status: {mongoDBConnectionStatusString}
+        <br />
+        Frontend App Version: {process.env.REACT_APP_VERSION}
       </div>
     );
   }
