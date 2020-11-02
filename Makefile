@@ -14,11 +14,11 @@ DOCKER_COMPOSE_TEST_FILE_NAME = docker-compose.test.yml
 
 ## build           | Builds the main service
 build:
-	docker-compose --file $(DOCKER_COMPOSE_MAIN_FILE_NAME) build
+	NODE_ENV=$(NODE_ENV) docker-compose --file $(DOCKER_COMPOSE_MAIN_FILE_NAME) build > /dev/null
 
 ## build-test      | Builds the test docker image
 build-test:
-	docker-compose --file $(DOCKER_COMPOSE_TEST_FILE_NAME) build
+	NODE_ENV=$(NODE_ENV) docker-compose --file $(DOCKER_COMPOSE_TEST_FILE_NAME) build > /dev/null
 
 ## clean           | Stops all docker containers running
 clean:
@@ -46,7 +46,7 @@ precommit: build build-test test-unit
 
 ## rebuild         | Builds the main service with no caching and pulling in the latest images
 rebuild:
-	docker-compose --file $(DOCKER_COMPOSE_MAIN_FILE_NAME) build --no-cache --pull
+	NODE_ENV=$(NODE_ENV) docker-compose --file $(DOCKER_COMPOSE_MAIN_FILE_NAME) build --no-cache --pull
 
 ## rebuild-test    | Builds the test image with no caching and pulling in the latest image
 rebuild-test:

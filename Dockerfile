@@ -25,7 +25,9 @@ RUN apt-get install -qq -y \
 #----------------------------------------------------------------------
 ARG USER_NAME=node
 ARG DATA_DIR=/data/
+ARG NODE_ENV
 ENV APP_DIR=$DATA_DIR/app/
+ENV NODE_ENV $NODE_ENV
 
 RUN mkdir -p $APP_DIR \
     && useradd -ms /bin/bash $USER_NAME \
@@ -69,7 +71,9 @@ COPY \
   .env* \
   $APP_DIR
 
-RUN npm run build
+RUN echo $NODE_ENV
+RUN echo build:$NODE_ENV
+RUN npm run build:$NODE_ENV
 
 #----------------------------------------------------------------------
 # Use multi-stage builds to run the linter

@@ -15,8 +15,8 @@ export function getAPIBaseUrl(): string {
 }
 
 export function getEnv(): string {
-  if (process.env.NODE_ENV === undefined) {
+  if (process.env.REACT_APP_REAL_ENV === undefined) {
     throw new Error("NODE_ENV environment variable must be non-empty.");
   }
-  return process.env.NODE_ENV;
+  return process.env.REACT_APP_REAL_ENV;
 }

@@ -2,6 +2,8 @@ version: "3.8"
 services:
   app:
     build:
+      args:
+        - NODE_ENV
       context: .
       dockerfile: Dockerfile
       target: app
