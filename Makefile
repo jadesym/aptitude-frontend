@@ -14,11 +14,11 @@ DOCKER_COMPOSE_TEST_FILE_NAME = docker-compose.test.yml
 
 ## build           | Builds the main service
 build:
-	NODE_ENV=$(NODE_ENV) docker-compose --file $(DOCKER_COMPOSE_MAIN_FILE_NAME) build > /dev/null
+	NODE_ENV=$(NODE_ENV) docker-compose --file $(DOCKER_COMPOSE_MAIN_FILE_NAME) build
 
 ## build-test      | Builds the test docker image
 build-test:
-	NODE_ENV=$(NODE_ENV) docker-compose --file $(DOCKER_COMPOSE_TEST_FILE_NAME) build > /dev/null
+	NODE_ENV=$(NODE_ENV) docker-compose --file $(DOCKER_COMPOSE_TEST_FILE_NAME) build
 
 ## clean           | Stops all docker containers running
 clean:
