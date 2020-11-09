@@ -35,7 +35,7 @@ deploy-attach: build
 
 # test-unit       | Runs the unit tests
 test-unit: build-test
-	docker-compose --file $(DOCKER_COMPOSE_TEST_FILE_NAME) run test-unit
+	NODE_ENV=$(NODE_ENV) docker-compose --file $(DOCKER_COMPOSE_TEST_FILE_NAME) run test-unit
 
 ## help            | Outputs the possible make commands
 help: Makefile
