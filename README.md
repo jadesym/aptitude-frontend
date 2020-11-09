@@ -4,6 +4,11 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 npx create-react-app frontend --template typescript
 ```
 
+# Setup
+
+## Configuring git hooks path to the .githooks directory
+git config core.hooksPath .githooks/
+
 ## Available Scripts
 
 In the project directory, you can run:
