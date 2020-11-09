@@ -23,4 +23,4 @@ jobs:
       - name: Run build of the unit tests target
         run: make build-test NODE_ENV=development
       - name: Run the unit tests
-        run: make test-unit
+        run: make test-unit NODE_ENV=development
