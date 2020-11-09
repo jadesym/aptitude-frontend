@@ -7,6 +7,15 @@
 FROM jadesym/node-ubuntu-docker-base:latest as base
 
 #----------------------------------------------------------------------
+# Build arguments and environment variables
+#----------------------------------------------------------------------
+ARG USER_NAME=node
+ARG DATA_DIR=/data/
+ARG NODE_ENV
+ENV APP_DIR=$DATA_DIR/app/
+ENV NODE_ENV $NODE_ENV
+
+#----------------------------------------------------------------------
 # Dependencies Installation
 #----------------------------------------------------------------------
 # Confirm Node Installation (use for debugging)
@@ -23,12 +32,6 @@ RUN apt-get install -qq -y \
 #----------------------------------------------------------------------
 # User & Directory Setup
 #----------------------------------------------------------------------
-ARG USER_NAME=node
-ARG DATA_DIR=/data/
-ARG NODE_ENV
-ENV APP_DIR=$DATA_DIR/app/
-ENV NODE_ENV $NODE_ENV
-
 RUN mkdir -p $APP_DIR \
     && useradd -ms /bin/bash $USER_NAME \
     && chown -R $USER_NAME:$USER_NAME $DATA_DIR
