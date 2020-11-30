@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import logo from "./assets/logo.svg";
 import "./App.scss";
 
-import ServerStatus from "./component/ServerStatus";
+import ServerStatus from "./components/ServerStatus";
 
 class App extends Component {
   render() {
