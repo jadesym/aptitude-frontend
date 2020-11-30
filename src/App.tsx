@@ -11,9 +11,7 @@ class App extends Component {
     return (
       <Router>
         <Switch>
-          <Route exact path="/status">
-            <ServerStatus />
-          </Route>
+          <Route exact path="/status" component={ServerStatus}/>
           {
             // No patch to match everything other than status
           }
