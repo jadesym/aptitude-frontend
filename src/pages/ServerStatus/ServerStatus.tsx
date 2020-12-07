@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { gql } from "@apollo/client";
-import { query } from "../api/graphQLClient";
-import { getEnv } from "../env/main";
+import { query } from "../../api/graphQLClient";
+import { getEnv } from "../../env/main";
 
 // Move query into a separate file
 const serverStatusQuery = gql`
